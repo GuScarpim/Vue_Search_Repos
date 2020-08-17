@@ -1,37 +1,37 @@
 <template>
-  <div class="card">
-    <avatar circle size="sm" :img="userData.avatar_url"/>
-    <user :perfil="perfilUsuario"/>
-    <!-- <div class="repositorios">
-      <ul id="listRepos" v-if="userRepositories.length > 0">
-      <h4>Repositórios</h4>
-      <small>Total de repositórios: {{userRepositories.length}}</small>
-      <hr>
-        <li v-for="repository in userRepositories" :key="repository.id">{{repository.name}}</li>
-      </ul>
-    </div> -->
-      <ul id="myList" v-if="userRepositories.length > 0">
-      <h4>Repositórios</h4>
-      <small>Total: {{userRepositories.length}}</small>
-      <hr>
-        <li v-for="repository in userRepositories" :key="repository.id">{{repository.name}}</li>
-      </ul>
+  <div>
+    <div class="card" v-if="loading === false">
+      <avatar circle size="sm" :img="userData.avatar_url"/>
+      <user :perfil="perfilUsuario"/>
+      <div class="repositorios">
+        <ul id="myList" v-if="userRepositories.length > 0">
+        <h4>Repositórios</h4>
+        <small>Total: {{userRepositories.length}}</small>
+        <hr>
+          <li v-for="repository in userRepositories" :key="repository.id">{{repository.name}}</li>
+        </ul>
+      </div>
+    </div>
+    <div v-if="loading" style="margin-top: 40px; align-items: center; justify-content: center;">
+      <cube-spin v-if="loading"/>
+    </div>
   </div>
 </template>
 
 <script>
-import Axios from 'axios';
 import Avatar from "./Avatar";
 import User from "./User";
+import CubeSpin from 'vue-loading-spinner/src/components/RotateSquare2'
 export default {
-  components: { Avatar, User },
+  components: { Avatar, User, CubeSpin },
   name: "",
   props: {
     userName: String
   },
   data: () => ({
     userData: "",
-    userRepositories: []
+    userRepositories: [],
+    loading: false,
   }),
   computed: {
     perfilUsuario () {
@@ -45,6 +45,7 @@ export default {
   },
   methods: {
     getUser(name) {
+      this.loading = true
       fetch(`https://api.github.com/users/${name}`, {
         headers: {
           Accept: "application/json",
@@ -52,8 +53,14 @@ export default {
         },
         method: "GET"
       })
-        .then(response => response.json().then(x => (this.userData = x)))
-        .catch(error => console.log(error));
+        .then(response => {
+          response.json().then(x => (this.userData = x))
+          this.loading = false
+        })
+        .catch(error => { 
+          console.log(error)
+          this.loading = false
+        });
     },
     getRepos(name) {
       fetch(`https://api.github.com/users/${name}/repos`, {
@@ -66,27 +73,6 @@ export default {
         .then(response => response.json().then(x => (this.userRepositories = x)))
         .catch(error => console.log(error));
     },
-    // getUser(name) {
-    //   Axios.get(`https://api.github.com/users/${name}`, {
-    //     headers: {
-    //       Accept: "application/json",
-    //       "Content-Type": "application/json"
-    //     },
-    //   })
-    //     .then(response => response.json().then(x => (this.userData = x)))
-    //   .catch(error => console.log(error))
-    // },
-
-    // getRepos(name) {
-    //   Axios.get(`https://api.github.com/users/${name}/repos`, {
-    //     headers: {
-    //       Accept: "application/json",
-    //       "Content-Type": "application/json"
-    //     },
-    //   })
-    //   .then(response => response.json().then(x => (this.userRepositories = x)))
-    //   .catch(error => console.log(error))
-    // },
   },
 
   watch: {
@@ -126,6 +112,7 @@ export default {
     transition: box-shadow 0.5s;
     will-change: transform;
     border: 15px solid white;
+    margin-bottom: 40px;
   }
 
   .card:hover {
