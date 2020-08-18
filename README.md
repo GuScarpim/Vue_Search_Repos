@@ -24,3 +24,6 @@ https://api.github.com/users/${name}/repos
 <p><b>4º Rode o comando "NPM INSTALL" || "YARN" para baixar todas as depêndencias do projeto.</b></p>
 
 <p><b>5º Rode o comando "NPM RUN SERVE" || "YARN SERVE" para inicializar o projeto, em seguida, vá até o endereço padrão do Vue "http://localhost:8080/"</b></p>
+
+# Desenvolvido por Gustavo Scarpim:
+![Projeto em ação](./src/assets/vue.gif)
