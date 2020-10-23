@@ -1,7 +1,9 @@
 {
   "name": "myapp",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "homepage": "https://guscarpim.github.io/Vue_Search_Repos/",
+    
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
