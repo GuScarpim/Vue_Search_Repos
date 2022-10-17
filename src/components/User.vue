@@ -10,7 +10,7 @@
     <span>{{props.perfil.location || 'São Paulo - SP'}}</span>
     <hr />
     <h3>Blog</h3>
-     <a :href="[props.perfil.blog || 'https://guscarpim.github.io/Portfolio/']"
+     <a :href="[props.perfil.blog || 'https://gustavoscarpim.com/']"
         target="_blank" class="link">{{props.perfil.blog || 'guscarpim/Portfolio/'}}</a>
     <hr />
   </header>

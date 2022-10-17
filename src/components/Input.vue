@@ -1,9 +1,13 @@
 <template>
   <section>
-    <form @submit.prevent="event => $emit('input', nameData)">
+    <form @submit.prevent="(event) => $emit('input', nameData)">
       <h1>Buscar Usuários e repositórios no Github</h1>
       <div class="input-container">
-        <input type="text" v-model="nameData" placeholder="Insira um nome de usuário do GitHub" />
+        <input
+          type="text"
+          v-model="nameData"
+          placeholder="Insira um nome de usuário do GitHub"
+        />
         <label class="label" for="name">Nome</label>
       </div>
       <div class="positionBtn">
@@ -16,11 +20,11 @@
 <script>
 export default {
   name: 'Input',
-   data() {
-      return {
-        nameData: ''
-      }
+  data() {
+    return {
+      nameData: '',
     }
+  },
 }
 </script>
 
@@ -40,7 +44,7 @@ export default {
 
 .btnSearch:hover {
   background-color: #459689;
-  color: #F3F3F9;
+  color: #f3f3f9;
 }
 
 .positionBtn {
@@ -111,5 +115,4 @@ section {
   border-radius: 0 0 2px 2px;
   background-color: #fff;
 }
-
 </style>
