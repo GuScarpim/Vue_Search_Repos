@@ -5,34 +5,32 @@ export default {
     img: {
       type: String,
       default:
-        "https://avatars1.githubusercontent.com/u/47616551?s=460&u=f9f81df034252d349d5c631a85cd57ea603beefa&v=4"
+        'https://avatars1.githubusercontent.com/u/47616551?s=460&u=f9f81df034252d349d5c631a85cd57ea603beefa&v=4',
     },
     circle: [Boolean, String],
     size: {
-      type: String,
-      // default: "md",
-      // validator: v => ["sm"].includes(v)
-    }
+      type: String
+    },
   },
   render(h, context) {
-    const { props } = context;
+    const { props } = context
     // console.log(props)
     return h(
-      "img",
+      'img',
       {
         class: {
           circular: props.circle, //deixar perfil redondo
-          sm: props.size === "sm",
+          sm: props.size === 'sm',
         },
         attrs: {
           src: props.img,
-          alt: "avatar"
-        }
+          alt: 'avatar',
+        },
       },
       []
-    );
-  }
-};
+    )
+  },
+}
 </script>
 <style scoped>
 .circular {

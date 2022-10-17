@@ -1,24 +1,24 @@
 <template>
   <div id="app">
     <Input v-model="name" />
-    <load-data :userName.sync="name"/>
+    <load-data :userName.sync="name" />
   </div>
 </template>
 
 <script>
 import LoadData from './components/LoadData'
-import Input from "./components/Input";
+import Input from './components/Input'
 
 export default {
-  name: "root-container",
+  name: 'root-container',
   data: () => ({
-    name: ''
+    name: '',
   }),
   components: {
     Input,
     LoadData,
-  }
-};
+  },
+}
 </script>
 
 <style>
@@ -26,7 +26,7 @@ body {
   background-color: #323650;
 }
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   color: #2c3e50;
   margin: 0px;
   height: 100vh;
@@ -40,20 +40,36 @@ body {
   animation: fadeIn 2s ease-in-out;
 }
 
-  @-webkit-keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; } 
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
   }
-  @-moz-keyframes fadeIn {
-  0% { opacity: 0;}
-  100% { opacity: 1; }
+  100% {
+    opacity: 1;
   }
-  @-o-keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+}
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
   }
-  @keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  100% {
+    opacity: 1;
   }
+}
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 </style>
